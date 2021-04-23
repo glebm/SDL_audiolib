@@ -399,6 +399,14 @@ target_link_libraries(
         ${EXTRA_LIBRARIES}
 )
 
+target_include_directories(
+    SDL_audiolib
+
+    SYSTEM PUBLIC
+
+    ${SDL_INCLUDE_DIRS}
+)
+
 if(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     set(CMAKE_INSTALL_LIBDIR lib CACHE PATH "Output directory for libraries.")
 endif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
