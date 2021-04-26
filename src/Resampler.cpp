@@ -216,7 +216,7 @@ auto Aulib::Resampler::resample(float dst[], int dstLen) -> int
 
     // Keep resampling until we either produce the requested amount of output
     // samples, or the decoder has no more samples to give us.
-    while (totalSamples < dstLen and not decEOF) {
+    while (totalSamples < dstLen && !decEOF) {
         // If the input buffer is not filled, get some more samples from the
         // decoder.
         if (d->fInBufferEnd < d->fInBuffer.size()) {
