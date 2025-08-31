@@ -23,6 +23,12 @@ option(
 )
 
 option(
+    USE_STATIC_SDL
+    "Force the use of static SDL when both static and shared are available."
+    OFF
+)
+
+option(
     USE_RESAMP_SRC
     "Enable SRC (aka libsamplerate) resampler."
     ON
@@ -225,7 +231,7 @@ if(USE_SDL1)
     set(PKGCONF_REQ_PUB "${PKGCONF_REQ_PUB} sdl")
 else()
     find_package(SDL2 REQUIRED)
-    if(TARGET SDL2::SDL2)
+    if(TARGET SDL2::SDL2 AND NOT (USE_STATIC_SDL AND TARGET SDL2::SDL2-static))
         set(SDL_LIBRARIES SDL2::SDL2)
     elseif(TARGET SDL2::SDL2-static)
         # On some distros, such as vitasdk, only the SDL2::SDL2-static target is available.
